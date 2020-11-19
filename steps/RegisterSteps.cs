@@ -6,107 +6,108 @@ namespace Selenium.Steps
 {
     public class RegisterSteps
     {
-        public static void SetFirstName(RemoteWebDriver driver, string text)
+        // Ctrl + H  > para substituir todas as variaveis com um nome igual
+        public static void SetFirstName(EventFiringWebDriver driver, string text)
         {
             driver.FindElement(RegisterSteps.FirstName).SendKeys(text);
         }
 
-        public static void ClickSubmit(RemoteWebDriver driver)
+        public static void ClickSubmit(EventFiringWebDriver driver)
         {
             driver.FindElement(RegisterPage.Submit).Click();
         }
 
-        public static void SetLastName(RemoteWebDriver driver, string text)
+        public static void SetLastName(EventFiringWebDriver driver, string text)
         {
             driver.FindElement(RegisterPage.LastName).SendKeys(text);
         }
 
-        public static void SetEmailAddress(RemoteWebDriver driver, string text)
+        public static void SetEmailAddress(EventFiringWebDriver driver, string text)
         {
             driver.FindElement(RegisterPage.EmailAddress).SendKeys(text);
         }
 
-        public static void SetPhone(RemoteWebDriver driver, string text)
+        public static void SetPhone(EventFiringWebDriver driver, string text)
         {
             driver.FindElement(RegisterPage.Phone).SendKeys(text);
         }
 
-        public static void ClickGenderMale(RemoteWebDriver driver)
+        public static void ClickGenderMale(EventFiringWebDriver driver)
         {
             driver.FindElement(RegisterPage.GenderMale).Click();
         }
 
-        public static void ClickGenderFeMale(RemoteWebDriver driver)
+        public static void ClickGenderFeMale(EventFiringWebDriver driver)
         {
             driver.FindElement(RegisterPage.GenderFeMale).Click();
         }
 
-        public static void SelectCountryByText(RemoteWebDriver driver, string text)
+        public static void SelectCountryByText(EventFiringWebDriver driver, string text)
         {
             new SelectElement(driver.FindElement(RegisterPage.Country)).SelectByText(text);
         }
 
-        public static void SelectCountryByValue(RemoteWebDriver driver, string value)
+        public static void SelectCountryByValue(EventFiringWebDriver driver, string value)
         {
             new SelectElement(driver.FindElement(RegisterPage.Country)).SelectByValue(value);
         }
 
-        public static void SelectCountryByIndex(RemoteWebDriver driver, int index)
+        public static void SelectCountryByIndex(EventFiringWebDriver driver, int index)
         {
             new SelectElement(driver.FindElement(RegisterPage.Country)).SelectByIndex(index);
         }
 
-        public static void SelectDateOfBirthYearByText(RemoteWebDriver driver, string text)
+        public static void SelectDateOfBirthYearByText(EventFiringWebDriver driver, string text)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthYear)).SelectByText(text);
         }
 
-        public static void SelectDateOfBirthYearByValue(RemoteWebDriver driver, string value)
+        public static void SelectDateOfBirthYearByValue(EventFiringWebDriver driver, string value)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthYear)).SelectByValue(value);
         }
 
-        public static void SelectDateOfBirthYearByIndex(RemoteWebDriver driver, int index)
+        public static void SelectDateOfBirthYearByIndex(EventFiringWebDriver driver, int index)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthYear)).SelectByIndex(index);
         }
 
-        public static void SelectDateOfBirthMonthByText(RemoteWebDriver driver, string text)
+        public static void SelectDateOfBirthMonthByText(EventFiringWebDriver driver, string text)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthMonth)).SelectByText(text);
         }
 
-        public static void SelectDateOfBirthMonthByValue(RemoteWebDriver driver, string value)
+        public static void SelectDateOfBirthMonthByValue(EventFiringWebDriver driver, string value)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthMonth)).SelectByValue(value);
         }
 
-        public static void SelectDateOfBirthMonthByIndex(RemoteWebDriver driver, int index)
+        public static void SelectDateOfBirthMonthByIndex(EventFiringWebDriver driver, int index)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthMonth)).SelectByIndex(index);
         }
 
-        public static void SelectDateOfBirthDayByText(RemoteWebDriver driver, string text)
+        public static void SelectDateOfBirthDayByText(EventFiringWebDriver driver, string text)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthDay)).SelectByText(text);
         }
 
-        public static void SelectDateOfBirthDayByValue(RemoteWebDriver driver, string value)
+        public static void SelectDateOfBirthDayByValue(EventFiringWebDriver driver, string value)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthDay)).SelectByValue(value);
         }
 
-        public static void SelectDateOfBirthDayByIndex(RemoteWebDriver driver, int index)
+        public static void SelectDateOfBirthDayByIndex(EventFiringWebDriver driver, int index)
         {
             new SelectElement(driver.FindElement(RegisterPage.DateOfBirthDay)).SelectByIndex(index);
         }
 
-        public static void SetPassword(RemoteWebDriver driver, string text)
+        public static void SetPassword(EventFiringWebDriver driver, string text)
         {
             driver.FindElement(RegisterPage.Password).SendKeys(text);
         }
 
-        public static void SetConfirmPassword(RemoteWebDriver driver, string text)
+        public static void SetConfirmPassword(EventFiringWebDriver driver, string text)
         {
             driver.FindElement(RegisterPage.ConfirmPassword).SendKeys(text);
         }

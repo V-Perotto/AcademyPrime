@@ -4,73 +4,44 @@ using OpenQA.Selenium;
 namespace Selenium.features
 {
     [TestClass]
-    public class RegisterFeature
+    public class RegisterFeature : TestBase
     {
         [TestMethod]
         public void SkipSignInComSucesso()
+        {     
+            #region Scenario
+            IndexSteps.ClickSkipSignIn(driver);
+            Assert.IsTrue(driver.Url.Contains("Register"), "Sign In realizado com sucesso");
+            #endregion
+        }
+
+        public static IEnumerable<object[]> GetData()
         {
-            var driver = new ChromeDriver(@"C:\Selenium");
-
-            try 
-            {
-                #region Initialize
-                driver.Manage().Window.Maximize();
-                driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-                driver.Url = "http://demo.automationtesting.in/Index.html";
-                #endregion
-
-                #region Scenario
-                IndexSteps.ClickSkipSignIn(driver);
-                Assert.IsTrue(driver.Url.Contains("Register"), "Sign In realizado com sucesso");
-                #endregion
-            }
-
-            catch(Exception e)
-            {
-                driver.quit();
-                Assert.Fail($"{e.Message}/n{e.InnerException}/n{e.StackTrace}");
-            }
-            driver.quit();
+            var randomNumber = new Random().Next(10000000, 99999999).ToString(); 
+            yield return new object[] { "Vittorio", "Perotto", "v-perotto@test.com", $"41{randomNumber}", "Brazil", "2002", 5, "14", "Testing@123", "Testing@123" }
         }
 
         [TestMethod]
-        public void CadastroComSucesso()
+        [DynamicData("GetData", DynamicDataSourceType.Method)]
+        public void CadastroComSucesso(string firstName, string lastName, string email, string telefone, string pais, string ano, int mes, string dia, string senha, string confirmaSenha)
         {
-            var driver = new ChromeDriver(@"C:\Selenium");
+            #region Scenario
+            IndexSteps.ClickSkipSignIn(driver);
+            RegisterSteps.SetFirstName(driver, firstName);
+            RegisterSteps.SetLastName(driver, lastName);
+            RegisterSteps.SetEmailAddress(driver, email);
+            RegisterSteps.SetPhone(driver, telefone);
+            RegisterSteps.SetGenderMale(driver);
+            RegisterSteps.SetCountryByText(driver, pais);
+            RegisterSteps.SetDathOfBirthYearByText(driver, ano);
+            RegisterSteps.SetDathOfBirthMonthByText(driver, mes);
+            RegisterSteps.SetDathOfBirthDayByText(driver, dia);
+            RegisterSteps.SetPassword(driver, senha);
+            RegisterSteps.SetConfirmPassword(driver, confirmaSenha);
+            RegisterSteps.ClickSubmit(driver);
 
-            try 
-            {
-                #region Initialize
-                driver.Manage().Window.Maximize();
-                driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-                driver.Url = "http://demo.automationtesting.in/Index.html";
-                #endregion
-
-                #region Scenario
-                IndexSteps.ClickSkipSignIn(driver);
-                RegisterSteps.SetFirstName(driver, "Vittorio");
-                RegisterSteps.SetLastName(driver, "Perotto");
-                RegisterSteps.SetEmailAddress(driver, "v-perotto@test.com");
-                RegisterSteps.SetPhone(driver, "4199999999");
-                RegisterSteps.SetGenderMale(driver);
-                RegisterSteps.SetCountryByText(driver, "Brazil");
-                RegisterSteps.SetDathOfBirthYearByText(driver, "2002");
-                RegisterSteps.SetDathOfBirthMonthByText(driver, 5);
-                RegisterSteps.SetDathOfBirthDayByText(driver, "14");
-                RegisterSteps.SetPassword(driver, "Testing@123");
-                RegisterSteps.SetConfirmPassword(driver, "Testing@123");
-                RegisterSteps.ClickSubmit(driver);
-                #endregion
-            }
-
-            catch(Exception e)
-            {
-                driver.quit();
-                Assert.Fail($"{e.Message}/n{e.InnerException}/n{e.StackTrace}");
-            }
-            driver.quit();
+            Assert.IsTrue(WebTableSteps.EditIsEnabled(driver));
+            #endregion
         }
 
         [TestMethod]
