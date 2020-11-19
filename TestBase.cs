@@ -25,7 +25,7 @@ namespace Selenium
             }
         }
 
-        public void Log(string Report, string msg) 
+        public static void Log(string Report, string msg) 
         {
             using(StreamWriter sw = new StreamWriter(Report, true))
             {
@@ -110,6 +110,14 @@ namespace Selenium
         public void MyTestCleanup() 
         {
             driver.Quit();
+
+            using(StreamWriter sw = new StreamWriter(Report, true))
+            {
+                sw.WriteLine("------------------------------------------");
+                sw.WriteLine($"{TestContext.CurrentTestOutcome}");
+                sw.WriteLine("------------------------------------------");
+            }
+
             TestContext.AddResultFile(Report);
         }
     }
